@@ -7,7 +7,7 @@ function App() {
   const [length,setLength] = useState(6)
   const [isNumber,setIsNumber] = useState(false)
   const [isChar,setIsChar] = useState(false)
-  
+  const passRef = useRef(null)
 
   const passGenerator = useCallback(()=>{
     let pass = ''
@@ -36,11 +36,23 @@ function App() {
     setIsChar((prev)=>!prev)
   }
 
+  function handleCopy(){
+    passRef.current?.select()
+    window.navigator.clipboard.writeText(password)
+  }
+
   return (
     <>
       <div>
-        <input type="text" name="" id="" readOnly value={password}/>
-        <button type="button">Copy</button>
+        <input 
+        type="text" 
+        name="" 
+        id="" 
+        readOnly 
+        value={password}
+        ref={passRef}
+        />
+        <button type="button" onClick={handleCopy}>Copy</button>
         <br />
 
         <label htmlFor="number">Number</label>
