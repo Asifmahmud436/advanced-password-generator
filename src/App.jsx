@@ -17,12 +17,12 @@ function App() {
     if(isNumber) str+= '1234567890'
 
     for(let i = 0; i< length; i++){
-      pass += str.charAt(Math.floor(Math.random()*str.length + 1)) 
+      pass += str.charAt(Math.floor(Math.random()*str.length)) 
     }
 
     setPassword(pass)
 
-  },[password,length,isNumber,isChar])
+  },[length,isNumber,isChar])
 
   useEffect(()=>{
     passGenerator()
@@ -77,7 +77,7 @@ function App() {
         id="range" 
         min='6' 
         max='35'
-        onChange={(e)=>setLength(e.target.value)}
+        onChange={(e)=>setLength(parseInt(e.target.value))}
         defaultValue={length}
         />
       </div>
